@@ -1,0 +1,16 @@
+{
+    "users": [{
+        "id": 1,
+        "name": "Bruno Costa",
+        "email": "bruno@mail.com",
+        "phone": "34999291047",
+        "birth": "29071988"
+    },
+    {
+        "id": 2,
+        "name": "Mariana Costa",
+        "email": "mary@mail.com",
+        "phone": "34999291047",
+        "birth": "19122013"
+    }]
+}
