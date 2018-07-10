@@ -1,16 +1,18 @@
 {
-    "users": [{
-        "id": 1,
-        "name": "Bruno Costa",
-        "email": "bruno@mail.com",
-        "phone": "34999291047",
-        "birth": "29071988"
+  "users": [
+    {
+      "id": 1,
+      "name": "Bruno Costa",
+      "email": "brunoscosta17@gmail.com",
+      "phone": "34999291047",
+      "birth": "29/07/1988"
     },
     {
-        "id": 2,
-        "name": "Mariana Costa",
-        "email": "mary@mail.com",
-        "phone": "34999291047",
-        "birth": "19122013"
-    }]
+      "id": 2,
+      "name": "John Miller",
+      "email": "jm@mail.com",
+      "phone": "1234456789",
+      "birth": "07/07/2018"
+    }
+  ]
 }
