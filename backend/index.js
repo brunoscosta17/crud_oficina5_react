@@ -2,9 +2,13 @@ var express = require('express');
 var mongoose = require('mongoose');
 
 var app = express();
-// var conString = process.env.DATABASE_URL;
 
-var conString = "mongodb://oficina5user:102938@localhost:27017/oficina5";
+if (!process.env.DATABASE_URL) 
+{
+    process.env.DATABASE_URL = "mongodb://localhost/oficina5"
+}
+
+var conString = process.env.DATABASE_URL;
 
 mongoose.connect(conString, function(error) {
     console.log(error);
