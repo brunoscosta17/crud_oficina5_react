@@ -19,5 +19,9 @@ Pra se executar cada um dos projetos, navegue até as respectivas pastas e execu
     - npm install
     - npm start
 
+Para se executar o banco de dados mongodb, navegue até a raiz do projeto e execute o seguinte comando
+
+- docker stack deploy --compose-file docker-compose.yml oficina5
+
 Requisitos: https://github.com/brunoscosta17/crud_oficina5_react/wiki/Requisitos
 Referências: https://github.com/brunoscosta17/crud_oficina5_react/wiki/Refer%C3%AAncias
