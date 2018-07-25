@@ -1,8 +1,8 @@
 Desafio para o cargo de programador Front-End para a empresa Oficina 5 - Uberaba/MG
 
 É preciso ter previamente instalados:
-- nodejs versao 8.11.3
-- docker community edition
+- nodejs versao 8.11.3 https://nodejs.org/en/ 
+- docker community edition https://www.docker.com/community-edition#/download 
 
 Solução contém 2 projetos, separados por pastas na raiz:
 
@@ -22,8 +22,6 @@ Pra se executar cada um dos projetos, navegue até as respectivas pastas e execu
 Para se executar o banco de dados mongodb, navegue até a raiz do projeto e execute o seguinte comando
 
 - docker stack deploy --compose-file docker-compose.yml oficina5
-
-
 
 Requisitos: https://github.com/brunoscosta17/crud_oficina5_react/wiki/Requisitos
 
