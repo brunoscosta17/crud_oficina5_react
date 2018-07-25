@@ -1,27 +1,23 @@
-# crud_oficina5_react
+Desafio para o cargo de programador Front-End para a empresa Oficina 5 - Uberaba/MG
 
-Por favor leiam este documento do começo ao fim, com muita atenção. Dúvidas, entrar em contato com o responsável.
+É preciso ter previamente instalados:
+- nodejs versao 8.11.3
+- docker community edition
 
-O intuito deste teste é avaliar seus conhecimentos técnicos.
+Solução contém 2 projetos, separados por pastas na raiz:
 
-O teste consiste no desenvolvimento de um sistema de agenda de contatos. O sistema deve ser protegido de acessos públicos, ou seja, exigir login e senha para entrada no sistema.
+- frontend
+- backend
 
-Criar api com CRUD de contatos em NODEJS/EXPRESS/MONGODB
+Pra se executar cada um dos projetos, navegue até as respectivas pastas e execute os seguintes comandos no terminal (linux), ou powershell (windows)
 
-Criar front-end dessa api em reactJS.
+- frontend (localhost:3000)
+    - yarn install
+    - yarn start    
 
-O sistema deve conter um CRUD (Create, Read, Update, Delete) de contato e também um CRUD de usuário que poderão acessar o sistema (não há necessidade de implementar ACL). (ACL, do inglês Access Control List) é uma lista que define as permissões de acesso de um usuário a um determinado componente ou serviço de um sistema, como um arquivo ou diretório.
+- backend (localhost:3001)
+    - npm install
+    - npm start
 
-Banco de dados: Mongodb.
-
-O contato da agenda deve conter nome, e-mail, nº telefone e data de nascimento. O nome e e-mail não podem ser inseridos 2 vezes (regra de duplicidade).
-
-Possibilidade de filtro/busca do contato por nome e telefone.
-
-Um mesmo contato com nome e telefone já inseridos não pode ser inserido novamente (restrição de duplicidade de contato).
-
-Hospedar no github.
-
- 
-
-Boa sorte e qualquer dúvida, estou a disposição.
+Requisitos: https://github.com/brunoscosta17/crud_oficina5_react/wiki/Requisitos
+Referências: https://github.com/brunoscosta17/crud_oficina5_react/wiki/Refer%C3%AAncias
