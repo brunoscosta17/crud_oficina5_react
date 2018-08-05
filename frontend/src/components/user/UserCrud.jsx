@@ -1,108 +1,115 @@
 import React, { Component } from 'react'
 import Main from '../template/Main'
 import axios from 'axios'
+import Nav from '../template/Nav'
 
 const headerProps = {
-    icon: 'users',
+    icon: 'fas fa-user-tie',
     title: 'Usuários',
     subtitle: 'Cadastro de Usuários: Incluir, Listar, Alterar e Excluir'
 }
 
-const baseUrl = 'http://localhost:3001/users'
+const baseUrl = 'http://localhost:3001'
+
 const initialState = {
-    user: {name: '', email: '', phone: '', birth: ''},
+    user: {UserName: '', Password: '', ConfirmPassword: ''},
     list: []
 }
 
 export default class UserCrud extends Component {
-
-    state = {...initialState }
+    
+    state = { ...initialState }
 
     componentWillMount() {
         axios(baseUrl).then(resp => {
             this.setState({ list: resp.data })
         })
     }
-
-    clear() {
-        this.setState({ user: initialState.user })
-    }
-
+    
     save() {
-        const user = this.state.user
+        const user = this.state.user // obtendo o user
         const method = user.id ? 'put' : 'post'
-        const url = user.id ? `${baseUrl}/${user.id}` : baseUrl
+        const url = `${baseUrl}/user`;
         axios[method](url, user)
             .then(resp => {
                 const list = this.getUpdatedList(resp.data)
                 this.setState({ user: initialState.user, list })
+                alert('Salvo com sucesso!')
             })
     }
-
+    
     getUpdatedList(user, add = true) {
         const list = this.state.list.filter(u => u.id !== user.id)
         if(add) list.unshift(user)
         return list
     }
-
+    
     updateField(event) {
-        const user = { ...this.state.user }
+        const user = { ...this.state.user } // clonando o user para fazer update
         user[event.target.name] = event.target.value
         this.setState({ user })
+    }
+
+    clear() {
+        this.setState({ user: initialState.user })
+    }
+
+    checkRequired(value) {
+        return !!value.trim();
     }
 
     renderForm() {
         return(
             <div className="form">
                 <div className="row">
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-md-4">
                         <div className="form-group">
-                            <label>Nome</label>
+                            <label>Usuário</label>
                             <input type="text" 
                                 className="form-control" 
-                                name="name" 
-                                value={this.state.user.name} 
+                                name="UserName" 
+                                value={this.state.user.UserName} 
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite o nome..." />
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label>E-mail</label>
-                            <input type="text" 
-                                className="form-control" 
-                                name="email" 
-                                value={this.state.user.email} 
-                                onChange={e => this.updateField(e)}
-                                placeholder="Digite o e-mail..." />
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label>Telefone</label>
-                            <input type="text" 
-                                className="form-control" 
-                                name="phone" 
-                                value={this.state.user.phone} 
-                                onChange={e => this.updateField(e)}
-                                placeholder="Digite o telefone..." />
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label>Data de Nascimento</label>
-                            <input type="text" 
-                                className="form-control" 
-                                name="birth" 
-                                value={this.state.user.birth} 
-                                onChange={e => this.updateField(e)}
-                                placeholder="Digite a data de nascimento..." />
+                                placeholder="Digite o usuário..."
+                                errorMessage="Password is required" />
                         </div>
                     </div>
                 </div>
-                <hr />
                 <div className="row">
-                    <div className="col-12 d-flex justify-content-end">
+                    <div className="col-12 col-md-4">
+                        <div className="form-group">
+                            <label>Senha</label>
+                            <input type="password" 
+                                className="form-control" 
+                                name="Password" 
+                                value={this.state.user.Password} 
+                                onChange={e => this.updateField(e)}
+                                placeholder="Digite a senha..."
+                                errorMessage="Password is required"
+                                validate={this.checkRequired} />
+                        </div>
+                    </div>
+                </div>
+                {/*<div className="row">
+                    <div className="col-12 col-md-4">
+                        <div className="form-group">
+                            <label>Confirme a senha</label>
+                            <input type="password" 
+                                className="form-control" 
+                                name="ConfirmPassword" 
+                                value={this.state.user.ConfirmPassword}
+                                onChange={e => this.updateField(e)}
+                                placeholder="Digite novamente a senha..."
+                                errorMessage="Password do not match"
+                                validate={this.checkPasswordsMatch} />
+                        </div>
+                    </div>
+                </div>
+                */}  
+                <hr />
+
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-start">
                         <button className="btn btn-primary"
                             onClick={e => this.save(e)}>
                             Salvar                            
@@ -111,8 +118,21 @@ export default class UserCrud extends Component {
                             onClick={e => this.clear(e)}>
                             Cancelar
                         </button>
-                    </div>
+                    </div>                    
                 </div>
+
+                <hr/>
+                    <div className="col-12 col-md-4">
+                        <div className="form-group">
+                            <label>Busca</label>
+                            <input type="text" 
+                                className="form-control" 
+                                name="search" 
+                                value={this.state.user.search} 
+                                onChange={e => this.updateField(e)}
+                                placeholder="Digite a busca..." />
+                        </div>
+                    </div>
             </div>
         )
     }
@@ -135,9 +155,7 @@ export default class UserCrud extends Component {
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>Data de Nascimento</th>
+                        <th>Senha</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -154,10 +172,8 @@ export default class UserCrud extends Component {
                 return(
                     <tr key={user.id}>
                         <td>{user.id}</td>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td>{user.phone}</td>
-                        <td>{user.birth}</td>
+                        <td>{user.UserName}</td>
+                        <td>{user.Password}</td>
                         <td>
                             <button className="btn btn-warning"
                                 onClick={() => this.load(user)}>
@@ -176,10 +192,13 @@ export default class UserCrud extends Component {
 
     render() {
         return (
-            <Main {...headerProps}>
-                {this.renderForm()}
-                {this.renderTable()}
-             </Main>
+            <React.Fragment>
+                <Nav />
+                <Main {...headerProps}>
+                    {this.renderForm()}
+                    {this.renderTable()}
+                </Main>
+            </React.Fragment>
         )
     }
 }

@@ -8,6 +8,9 @@ export default props =>
             <i className="fa fa-home">Home</i>
         </Link>
         <Link to="/users">
-            <i className="fa fa-users">Usuários</i>
+            <i className="fas fa-user-tie">Usuários</i>
+        </Link>
+        <Link to="/contacts">
+            <i className="fa fa-users">Contatos</i>
         </Link>
     </aside>
